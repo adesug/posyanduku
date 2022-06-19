@@ -1,5 +1,9 @@
 <?php
 
+use Illuminate\Support\Str;
+
+$DATABASE_URL=parse_url('postgres://mguykmfkkibhfm:337b1d158fe4e67ada5013693c0744fd420706bbbecb09ca2f333d0028a306d3@ec2-52-72-56-59.compute-1.amazonaws.com:5432/d7tf4d1t8n1jjd');
+
 return [
 
     /*
@@ -12,8 +16,8 @@ return [
     | based disks are available to your application. Just store away!
     |
     */
-
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('DB_CONNECTION', 'pgsql'),
+    // 'default' => env('FILESYSTEM_DRIVER', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -64,6 +68,21 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+
+        'pgsql' => [
+            'driver' => 'pgsql',
+            'host' => $DATABASE_URL['host'],
+            'port' => $DATABASE_URL['port'],
+            'database' => ltrim($dbopts["path"], "/"),
+            'username' => $DATABASE_URL['user'],
+            'password' => $DATABASE_URL['pass'],
+            'carset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'schema' => 'public',
+            'sslmode' => 'prefer',
+
+        ]
 
     ],
 
