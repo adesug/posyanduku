@@ -16,8 +16,7 @@ return [
     | based disks are available to your application. Just store away!
     |
     */
-    'default' => env('DB_CONNECTION', 'pgsql'),
-    // 'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => env('FILESYSTEM_DRIVER', 'local'),
 
     /*
     |--------------------------------------------------------------------------
@@ -69,20 +68,7 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
-        'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => $DATABASE_URL['host'],
-            'port' => $DATABASE_URL['port'],
-            'database' => ltrim($dbopts["path"], "/"),
-            'username' => $DATABASE_URL['user'],
-            'password' => $DATABASE_URL['pass'],
-            'carset' => 'utf8',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'schema' => 'public',
-            'sslmode' => 'prefer',
-
-        ]
+        
 
     ],
 
